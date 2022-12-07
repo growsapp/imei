@@ -45,7 +45,7 @@ Every IMEI build will be automatically tested against the latest Ubuntu LTS Vers
 
 #### Recommended
 
-* Ubuntu 22.04 (__Focal__ Fossa)
+* Ubuntu 22.04 (__Jammy__ Jellyfish)
 * Debian 11 (__Bullseye__)
 
 #### Also compatible
@@ -143,10 +143,10 @@ Additional options / switches:
 **Default options** :
 
 <!-- versions start -->
-* ImageMagick version: `7.1.0-39 (Q16)`
-* libaom version: `3.4.0`
-* libheif version: `1.12.0`
-* libjxl version: `0.6.1`<!-- versions end -->
+* ImageMagick version: `7.1.0-53 (Q16)`
+* libaom version: `3.5.0`
+* libheif version: `1.14.0`
+* libjxl version: `0.7.0`<!-- versions end -->
 * Log File: `/var/log/imei.log`
 * Work Dir: `/usr/local/src/imei`
 * Build Dir: `/usr/local`

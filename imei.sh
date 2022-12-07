@@ -6,9 +6,9 @@
 #                  including advanced delegate support.      #
 #                                                            #
 # Author         : Sascha Greuel <hello@1-2.dev>             #
-# Date           : 2022-06-01 11:54                          #
+# Date           : 2022-08-31 09:01                          #
 # License        : ISC                                       #
-# Version        : 6.6.2                                     #
+# Version        : 6.6.4                                     #
 #                                                            #
 # Usage          : bash ./imei.sh                            #
 ##############################################################
@@ -526,16 +526,16 @@ install_aom() {
         fi
 
         # see https://github.com/SoftCreatR/imei/issues/9
-        CMAKE_FLAGS="-DBUILD_SHARED_LIBS=1 -DENABLE_DOCS=0 -DENABLE_TESTS=0 -DENABLE_CCACHE=1"
+        CMAKE_FLAGS=(-DBUILD_SHARED_LIBS=1 -DENABLE_DOCS=0 -DENABLE_TESTS=0 -DENABLE_CCACHE=1)
 
         if [[ "${OS_DISTRO,,}" == *"raspbian"* ]]; then
-          CMAKE_FLAGS+=' -DCMAKE_C_FLAGS="-mfloat-abi=hard -march=armv7-a -marm -mfpu=neon"'
+          CMAKE_FLAGS+=(-DCMAKE_C_FLAGS="-mfloat-abi=hard -march=armv7-a -marm -mfpu=neon")
         fi
 
         tar -xf "aom-$AOM_VER.tar.gz" &&
           mkdir "$WORK_DIR/build_aom" &&
           cd "$WORK_DIR/build_aom" &&
-          cmake "../aom-$AOM_VER/" "$CMAKE_FLAGS" &&
+          cmake "../aom-$AOM_VER/" "${CMAKE_FLAGS[@]}" &&
           make
 
           if [ -n "$CHECKINSTALL" ]; then
@@ -790,10 +790,10 @@ install_imagemagick() {
             --disable-static \
             --enable-shared \
             --enable-openmp \
-            --enable-opencl \
             --enable-cipher \
             --enable-hdri \
             --enable-docs \
+            --disable-opencl \
             --with-threads \
             --with-modules \
             --with-quantum-depth="$QUANTUM_DEPTH" \
